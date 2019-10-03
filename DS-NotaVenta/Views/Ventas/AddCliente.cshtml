@@ -1,0 +1,198 @@
+﻿@using DS_NotaVenta.Models;
+@{
+    ViewBag.Title = "AddCliente";
+    //List<UsuariosTiposModels> tipo = ViewBag.tipo;
+    //List<VendedoresSoftlandModels> vendedor = ViewBag.vendedor;
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Scripts/css/zerogrid.css">
+<link rel="stylesheet" href="~/Scripts/css/style.css">
+<link rel="stylesheet" href="~/Scripts/css/lightbox.css">
+<link rel="stylesheet" href="~/Scripts/css/menu.css">
+
+<body class="contact-page">
+    <div class="wrap-body">
+        <section id="container">
+            <div class="wrap-container">
+                <div class="zerogrid">
+                    <div class="row">
+                        <h1 class="t-center" style="margin: 40px 0;color: #212121;letter-spacing: 2px;font-weight: 500;">Mantenedor de Clientes</h1>
+                        @Html.Raw(TempData["Mensaje"])
+                        <div class="col-full">
+                            <div class="wrap-col">
+                                <div class="contact">
+                                    <div id="contact_form">
+                                        <form name="form1" id="ff" method="post" action="@Url.Action("AddCliente", "Ventas")">
+
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Nombre Cliente:</h6>
+                                                        <input type="text" name="NomAux" id="NomAux" placeholder="Nombre" required="required" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Rut:</h6>
+                                                        <input type="text" placeholder="Rut" name="RutAux" id="RutAux" required oninput="checkRut(this)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Email:</h6>
+                                                        <input type="email" name="Email" id="Email" placeholder="Email" required="required" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Giro Cliente:</h6>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            @Html.DropDownList("GirAux", (IEnumerable<SelectListItem>)ViewBag.Giro, "Seleccione Giro", new { @class = "form-control", @id = "GirAux", @name = "GirAux" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Ciudad Cliente:</h6>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            @Html.DropDownList("CiuAux", (IEnumerable<SelectListItem>)ViewBag.Ciudad, "Seleccione Ciudad", new { @class = "form-control", @id = "CiuAux", @name = "CiuAux" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Comuna Cliente:</h6>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            @Html.DropDownList("ComAux", (IEnumerable<SelectListItem>)ViewBag.Comuna, "Seleccione Comuna", new { @class = "form-control", @id = "ComAux", @name = "ComAux" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Telefono:</h6>
+                                                        <input name="FonAux1" id="FonAux1" placeholder="Telefono" required="required" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <h6>Direccion:</h6>
+                                                        <input name="DirAux" id="DirAux" placeholder="Direccion" required="required" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="wrap-col">
+                                                        <table>
+                                                            <tr>
+                                                                <th><center><button class="sendButton" name="btnAgregar" id="btnAgregar" value="Agregar Cliente" onclick="AgregarCliente" />Agregar Cliente</center></th>
+
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </section>
+    </div>
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $("#btnAgregar").click(function () {
+        $.ajax({
+            url: "AddCliente",
+            type: "POST",
+            data: {
+                _NomAux: $("#NomAux").val(),
+                _RutAux: $("#RutAux").val(),
+                _Email: $("#Email").val(),
+                _GirAux: $("#GirAux").val(),
+                _ComAux: $("#ComAux").val(),
+                _CiuAux: $("#CiuAux").val(),
+                _FonAux1: $("#FonAux1").val(),
+                _DirAux: $("#DirAux").val(),                
+            },
+            async: true,
+            success: function (data) {
+                if (data >= 1) {
+                    alert("Se Agrego Cliente");
+                    location.reload();
+                }
+                else {
+                    alert("Usuario Existente");
+                    location.reload();
+                }
+                
+            }
+        });
+    });
+
+    function checkRut() {
+        var sRut1 = document.getElementById("RutAux").value;
+        sRut1 = sRut1.replace('-', '');// se elimina el guion
+        sRut1 = sRut1.replace('.', '');// se elimina el primer punto
+        sRut1 = sRut1.replace('.', '');// se elimina el segundo punto
+        sRut1 = sRut1.replace(/k$/, "K");
+        document.getElementById("RutAux").value = sRut1;
+        //contador de para saber cuando insertar el . o la -
+        var nPos = 0;
+        //Guarda el rut invertido con los puntos y el gui&oacute;n agregado
+        var sInvertido = "";
+        //Guarda el resultado final del rut como debe ser
+        var sRut = "";
+        for (var i = sRut1.length - 1; i >= 0; i--) {
+            sInvertido += sRut1.charAt(i);
+            if (i == sRut1.length - 1)
+                sInvertido += "-";
+            else if (nPos == 3) {
+                sInvertido += ".";
+                nPos = 0;
+            }
+            nPos++;
+        }
+        for (var j = sInvertido.length - 1; j >= 0; j--) {
+            if (sInvertido.charAt(sInvertido.length - 1) != ".")
+                sRut += sInvertido.charAt(j);
+            else if (j != sInvertido.length - 1)
+                sRut += sInvertido.charAt(j);
+        }
+        //Pasamos al campo el valor formateado
+        document.getElementById("RutAux").value = sRut.toUpperCase();
+    }
+</script>
+
+<script>
+
+</script>
+

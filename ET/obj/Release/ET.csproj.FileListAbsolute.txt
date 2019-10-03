@@ -1,0 +1,5 @@
+C:\Users\Desarrollo-PC\source\repos\DS-NotaVenta\ET\bin\Release\ET.dll
+C:\Users\Desarrollo-PC\source\repos\DS-NotaVenta\ET\bin\Release\ET.pdb
+C:\Users\Desarrollo-PC\source\repos\DS-NotaVenta\ET\obj\Release\ET.csproj.CoreCompileInputs.cache
+C:\Users\Desarrollo-PC\source\repos\DS-NotaVenta\ET\obj\Release\ET.dll
+C:\Users\Desarrollo-PC\source\repos\DS-NotaVenta\ET\obj\Release\ET.pdb

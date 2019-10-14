@@ -597,12 +597,11 @@ namespace DS_NotaVenta.Controllers
                     NVC.EstadoNP = "A";
                 }
 
-
-                List<NotadeVentaCabeceraModels> NV = NotaDeVentaDAO.EditarNV(NVC);
-
                 if (para[0].Aprobador == 1)
                 {
-                    // no insertar en softlad
+                    List<NotadeVentaCabeceraModels> NVSoft = NotaDeVentaDAO.EditarNV(NVC);
+                    ViewBag.NVnum = NVC.NVNumero;
+                    numSoft = NVC.NVNumero;
                 }
                 else
                 {
@@ -671,6 +670,7 @@ namespace DS_NotaVenta.Controllers
             double Decimal = c / 100;
             double t = u * Decimal;
             double total = u - t;
+            total = Math.Round(total);
 
             return Json(total.ToString());
         }

@@ -34,7 +34,7 @@ namespace DS_NotaVenta.DAO
                 using (DataContext dc = new DataContext(catalogo, "FR_BuscarProductoRapido", CommandType.StoredProcedure))
                 {
                     dc.parameters.AddWithValue("CodRapido", producto.CodRapido);
-                    dc.parameters.AddWithValue("CodLista", producto.CodLista);
+                    //dc.parameters.AddWithValue("CodLista", producto.CodLista);
                     return dc.executeQuery<ProductosModels>();
                 }
             }
